@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import './Navbar.css'
 
 const Navbar = () => {
     return (
@@ -7,18 +8,18 @@ const Navbar = () => {
             <nav className="navbar navbar-expand navbar-dark bg-dark">
                 <a href="/tareas" className="navbar-brand">
                     <div className="main-logo" >
-                        <img src="/app/car-logo.png" alt="Tareas" />
+                        <img src="/app/icon.png" alt="Tareas" />
                     </div>
                 </a>
                 <div className="navbar-nav mr-auto">
                     <li className="nav-item">
-                        <Link to={"/tareas"} className="nav-link">
-                            Tareas xd
+                        <Link to={"/tasks/new"} className="nav-link">
+                            Crear Tarea
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/tareas"} className="nav-link">
-                            Illooo kiere mete una hempresa má??
+                        <Link to={"/tasks"} className="nav-link">
+                            Ver Tareas
                         </Link>
                     </li>
                 </div>

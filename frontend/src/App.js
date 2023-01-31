@@ -8,18 +8,19 @@ import {
 
 // Pages & Components imports
 import Navbar from './components/Navbar/Navbar';
-import Task from './pages/Task';
+import Task from './pages/Tasks/Task';
+import NewTask from './pages/Tasks/NewTask';
 
 export default function App() {
   return (
     <>
-    <Navbar/>
       <BrowserRouter>
-          <Routes>
-            <Route path='/tareas' element={<Task />} />
-            <Route path='/' element={"/tareas"} />
-            <Route path="*" element={"/tareas"} />
-          </Routes>
+        <Navbar />
+        <Routes>
+          <Route path='' element={<Navigate to={"/tasks"} />} />
+          <Route path='/tasks' element={<Task />} />
+          <Route path='/tasks/new' element={<NewTask/>}/>
+        </Routes>
       </BrowserRouter>
     </>
 
