@@ -1,15 +1,28 @@
-
 import './App.css';
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-function App() {
+// Pages & Components imports
+import Navbar from './components/Navbar/Navbar';
+import Task from './pages/Task';
+
+export default function App() {
   return (
-   <Routes>
+    <>
+    <Navbar/>
+      <BrowserRouter>
+          <Routes>
+            <Route path='/tareas' element={<Task />} />
+            <Route path='/' element={"/tareas"} />
+            <Route path="*" element={"/tareas"} />
+          </Routes>
+      </BrowserRouter>
+    </>
 
 
-   </Routes>
-   
   );
 }
-
-export default App;
