@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.actions.report" id="gestion_tareas.gestion_tareas_report">
+            <field name="name">Reporte de Empresas</field>
+            <field name="model">gestion_tareas.gestion_tareas</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">gestion_tareas.report_template</field>
+            <field name="report_file">gestion_tareas.report_template</field>
+            <field name="binding_model_id" ref="gestion_tareas.model_gestion_tareas_gestion_tareas"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Empresas Johan",
+    'name': "Gestión de tareas",
 
     'summary': """
-        Módulo creado para la gestión de proyectos, tareas y subtareas dada una empresa.""",
+        Módulo para ser conectado con React para la gestión de tareas por parte de los proyectos.""",
 
     'description': """
         Long description of module's purpose
     """,
 
-    'author': "Johan Santana Galván",
+    'author': "Johan Santana Galván & Kevin Rodríguez Valentín",
     'website': "https://github.com/JohanSantanaGalvanJob",
 
     # Categories can be used to filter modules in modules listing

@@ -1,0 +1,25 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_gestion_tareas_gestion_tareas_jefe,gestion_tareas.gestion_tareas.jefe,model_gestion_tareas_gestion_tareas,gestion_tareas.grupo_jefe,1,1,1,1
+
+access_gestion_tareas_gestion_tareas_analista,gestion_tareas.gestion_tareas.analista,model_gestion_tareas_gestion_tareas,gestion_tareas.grupo_analista,1,0,0,0
+
+access_gestion_tareas_gestion_tareas_programador,gestion_tareas.gestion_tareas.programador,model_gestion_tareas_gestion_tareas,gestion_tareas.grupo_programador,1,0,0,0
+
+access_project_project,project.project,model_project_project,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_project_task_type_project_user,project.task.type.project.user,model_gestion_tareas_gestion_tareas,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_project_task,project.task,model_project_task,gestion_tareas.programador_proyecto,1,1,0,0
+
+access_partner_task_user,base.res.partner user,base.model_res_partner,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_resource_calendar,project.resource_calendar user,resource.model_resource_calendar,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_resource_calendar_attendance,project.resource_calendar_attendance user,resource.model_resource_calendar_attendance,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_resource_calendar_leaves_user,resource.calendar.leaves user,resource.model_resource_calendar_leaves,gestion_tareas.programador_proyecto,1,1,1,1
+
+access_account_analytic_account_user,account.analytic.account,analytic.model_account_analytic_account,gestion_tareas.programador_proyecto,1,0,0,0
+
+access_project_task_recurrence,project.task.recurrence,model_gestion_tareas_gestion_tareas,gestion_tareas.programador_proyecto,1,0,0,0

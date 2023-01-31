@@ -29,7 +29,7 @@
 
 
  <record id = "base.user_admin" model="res.users">
-    <field name="groups_id" eval="[(4,ref('empresas_johan.grupo_jefe'))]"/>
+    <field name="groups_id" eval="[(4,ref('gestion_tareas.grupo_jefe'))]"/>
     </record>
  </data>
  </odoo> 

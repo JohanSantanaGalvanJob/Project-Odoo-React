@@ -3,9 +3,9 @@
 from odoo import models, fields, api
 
 
-class empresas_johan(models.Model):
-    _name = 'empresas_johan.empresas_johan'
-    _description = 'empresas_johan.empresas_johan'
+class gestion_tareas(models.Model):
+    _name = 'gestion_tareas.gestion_tareas'
+    _description = 'gestion_tareas.gestion_tareas'
 
     name = fields.Char()
     description = fields.Text()
@@ -27,7 +27,7 @@ class hiring_projects(models.Model):
     _name = "project.project"
     _inherit = "project.project"
 
-    company = fields.Many2one("empresas_johan.empresas_johan", string="Empresa", ondelete="cascade")
+    company = fields.Many2one("gestion_tareas.gestion_tareas", string="Empresa", ondelete="cascade")
 
 class empresas_johan_tasks(models.Model):
     _name = 'project.task'

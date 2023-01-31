@@ -2,22 +2,22 @@
   <data>
     <!-- explicit list view definition -->
 
-    <record model="ir.ui.view" id="empresas_johan.empresas_johan_tree">
-      <field name="name">EmpresasJohan.tree</field>
-      <field name="model">empresas_johan.empresas_johan</field>
+    <record model="ir.ui.view" id="gestion_tareas.gestion_tareas_tree">
+      <field name="name">GestionTareas.tree</field>
+      <field name="model">gestion_tareas.gestion_tareas</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name" groups="empresas_johan.grupo_jefe, empresas_johan.grupo_analista"/>
-          <field name="description" groups="empresas_johan.grupo_jefe, empresas_johan.grupo_analista"/>
-          <field name="email" groups="empresas_johan.grupo_jefe, empresas_johan.grupo_analista"/>
-           <field name="phone" groups="empresas_johan.grupo_jefe, empresas_johan.grupo_analista" />
-          <field name="address" groups="empresas_johan.grupo_jefe, empresas_johan.grupo_analista"/>
+          <field name="name" groups="gestion_tareas.grupo_jefe, gestion_tareas.grupo_analista"/>
+          <field name="description" groups="gestion_tareas.grupo_jefe, gestion_tareas.grupo_analista"/>
+          <field name="email" groups="gestion_tareas.grupo_jefe, gestion_tareas.grupo_analista"/>
+           <field name="phone" groups="gestion_tareas.grupo_jefe, gestion_tareas.grupo_analista" />
+          <field name="address" groups="gestion_tareas.grupo_jefe, gestion_tareas.grupo_analista"/>
         </tree>
       </field>
     </record>
-    <record model="ir.ui.view" id="empresas_johan.empresas_johan_form">
+    <record model="ir.ui.view" id="gestion_tareas.gestion_tareas_form">
       <field name="name">EmpresasJohan.form</field>
-      <field name="model">empresas_johan.empresas_johan</field>
+      <field name="model">gestion_tareas.gestion_tareas</field>
       <field name="arch" type="xml">
         <form>
           <group id="group1" colspan="2" col="2">
@@ -55,26 +55,26 @@
 
     <!-- actions opening views on models -->
 
-    <record model="ir.actions.act_window" id="empresas_johan.empresas_johan_action_window">
+    <record model="ir.actions.act_window" id="gestion_tareas.gestion_tareas_action_window">
       <field name="name">Empresas</field>
-      <field name="res_model">empresas_johan.empresas_johan</field>
+      <field name="res_model">gestion_tareas.gestion_tareas</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Top menu item -->
 
-    <menuitem name="Empresas Johan" id="empresas_johan.menu_root" action="empresas_johan.empresas_johan_action_window"/>
+    <menuitem name="Empresas Johan" id="gestion_tareas.menu_root" action="gestion_tareas.gestion_tareas_action_window"/>
 
     <!-- menu categories -->
 
-    <menuitem name="Menu 1" id="empresas_johan.menu_1" parent="empresas_johan.menu_root"/>
-    <menuitem name="Menu 2" id="empresas_johan.menu_2" parent="empresas_johan.menu_root"/>
+    <menuitem name="Menu 1" id="gestion_tareas.menu_1" parent="gestion_tareas.menu_root"/>
+    <menuitem name="Menu 2" id="gestion_tareas.menu_2" parent="gestion_tareas.menu_root"/>
 
     <!-- actions -->
-    <menuitem name="Empresas" id="empresas_johan.menu_1_list" parent="empresas_johan.menu_root"
-              action="empresas_johan.empresas_johan_action_window"/>
+    <menuitem name="Empresas" id="gestion_tareas.menu_1_list" parent="gestion_tareas.menu_root"
+              action="gestion_tareas.gestion_tareas_action_window"/>
 
-    <menuitem name="Tareas" id="empresas_johan.tasks" parent="empresas_johan.menu_root"
+    <menuitem name="Tareas" id="gestion_tareas.tasks" parent="gestion_tareas.menu_root"
             action="project.action_view_all_task" sequence="2"/>
 
   </data>

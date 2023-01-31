@@ -3,12 +3,12 @@ from odoo import http
 from odoo.http import request
 
 
-class EmpresasJohan(http.Controller):
+class GestionTareas(http.Controller):
     @http.route('/api/getAll', auth='public',type="json",csrf=True, cors='*')
     def list(self, **kw):
-        empresas_johan_rec = request.env['empresas_johan.empresas_johan'].sudo().search([])
-        empresas_johan = []
-        for rec in empresas_johan_rec:
+        gestion_tareas_rec = request.env['gestion_tareas.gestion_tareas'].sudo().search([])
+        gestion_tareas = []
+        for rec in gestion_tareas_rec:
             vals = {
                 'id': rec.id,
                 'name': rec.name,
@@ -19,13 +19,13 @@ class EmpresasJohan(http.Controller):
                 'income': rec.income,
                 'bill': rec.bill,
             }
-            empresas_johan.append(vals)
-            print ("GET ALL ----> ", empresas_johan)
-        return {'status': 200, 'response': empresas_johan, 'message': 'Success'}
+            gestion_tareas.append(vals)
+            print ("GET ALL ----> ", gestion_tareas)
+        return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
     
     @http.route('/api/get/<int:rec_id>', auth='public',type="json",csrf=True, cors='*')
     def listOne(self, rec_id):
-        model_to_get = request.env['empresas_johan.empresas_johan']
+        model_to_get = request.env['gestion_tareas.gestion_tareas']
         rec = model_to_get.browse(rec_id).sudo().ensure_one()
         val = {
                 'id': rec.id,
@@ -44,9 +44,9 @@ class EmpresasJohan(http.Controller):
     def findByName(self, **kw):
         data = kw["data"]
         reg_exp = '%' + data['name'] + '%'
-        empresas_johan_rec = request.env['empresas_johan.empresas_johan'].sudo().search([('name', '=ilike', reg_exp)])
-        empresas_johan = []
-        for rec in empresas_johan_rec:
+        gestion_tareas_rec = request.env['gestion_tareas.gestion_tareas'].sudo().search([('name', '=ilike', reg_exp)])
+        gestion_tareas = []
+        for rec in gestion_tareas_rec:
             vals = {
                 'id': rec.id,
                 'name': rec.name,
@@ -57,30 +57,30 @@ class EmpresasJohan(http.Controller):
                 'income': rec.income,
                 'bill': rec.bill,
             }
-            empresas_johan.append(vals)
-        return {'status': 200, 'response': empresas_johan, 'message': 'Success'}
+            gestion_tareas.append(vals)
+        return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
     
 
     @http.route('/api/create', type='json', auth='public', csrf=True, cors='*')
     def create(self, **kw):
         data = kw["data"]
-        company_to_post = request.env["empresas_johan.empresas_johan"]
-        record = company_to_post.sudo().create(data)
+        task_to_post = request.env["gestion_tareas.gestion_tareas"]
+        record = task_to_post.sudo().create(data)
         return record.id
     
     @http.route('/api/update/<int:rec_id>', type='json', auth='public', csrf=True, cors='*')
     def update(self, rec_id, **kw):
         data = kw["data"]
-        company_to_put = request.env["empresas_johan.empresas_johan"]
-        rec = company_to_put.browse(rec_id).sudo().ensure_one()
+        task_to_put = request.env["gestion_tareas.gestion_tareas"]
+        rec = task_to_put.browse(rec_id).sudo().ensure_one()
         record = rec.write(data)
         data = {'status': 200, 'response': record, 'message': 'Success'}
         return data
 
     @http.route('/api/remove/<int:rec_id>', type='json', auth='public', csrf=True, cors='*')
     def delete(self, rec_id):
-        company_to_del_rec = request.env["empresas_johan.empresas_johan"]
-        rec = company_to_del_rec.browse(rec_id).sudo().ensure_one()
+        task_to_del_rec = request.env["gestion_tareas.gestion_tareas"]
+        rec = task_to_del_rec.browse(rec_id).sudo().ensure_one()
         is_deleted = rec.unlink()
         res = {
             "result": is_deleted
@@ -90,11 +90,11 @@ class EmpresasJohan(http.Controller):
 
     @http.route('/api/removeAll', type='json', auth='public', csrf=True, cors='*')
     def deleteAll(self):
-        company_to_del = request.env["empresas_johan.empresas_johan"].sudo()
+        task_to_del = request.env["gestion_tareas.gestion_tareas"].sudo()
         
         # .with_context(active_test=False) to also find inactive records.
-        all_companies = company_to_del.with_context(active_test=False).search([])
-        is_deleted = all_companies.unlink()
+        all_tasks = task_to_del.with_context(active_test=False).search([])
+        is_deleted = all_tasks.unlink()
         res = {
             "result": is_deleted
         }
