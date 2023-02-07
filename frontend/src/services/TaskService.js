@@ -55,7 +55,7 @@ const findByProject = pro => {
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "project": pro
+        "project_id": pro
       }
     }
   });
@@ -80,9 +80,8 @@ const create = data => {
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "title": data.title,
-        "project": data.project,
-        "stage": data.stage
+        "name": data.name,
+        "project_id": data.project_id
       }
     }
   });
@@ -107,9 +106,8 @@ const update = (id, data) => {
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "title": data.title,
-        "project": data.project,
-        "stage": data.stage
+        "name": data.name,
+        "project_id": data.project_id
       }
     }
   });
@@ -126,28 +124,6 @@ const update = (id, data) => {
 
   return axios(config);
 };
-
-// const remove = id => {
-//   const session_id = getSessionId();
-
-//   const data = JSON.stringify({
-//     "jsonrpc": "2.0",
-//     "params": {
-//     }
-//   });
-
-//   var config = {
-//     method: 'POST',
-//     url: `/api/tasks/remove/${id}`,
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "X-Openerp-Session-Id": session_id,
-//     },
-//     data: data
-//   };
-
-//   return axios(config);
-// };
 
 const removeAll = () => {
   const session_id = getSessionId();
@@ -199,9 +175,8 @@ const TaskService = {
   get,
   create,
   update,
-  // remove,
   removeAll,
-  // findByNif,
+  findByProject,
   initSession
 };
 

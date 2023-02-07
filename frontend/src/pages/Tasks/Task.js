@@ -8,9 +8,8 @@ const Task = props => {
 
   const initialTaskState = {
     id: null,
-    title: "",
-    project: "",
-    stage: ""
+    name: "",
+    project_id: ""
   };
   const [currentTask, setCurrentTask] = useState(initialTaskState);
   const [message, setMessage] = useState("");
@@ -58,7 +57,7 @@ const Task = props => {
                 className="form-control"
                 id="title"
                 name="title"
-                value={currentTask.title}
+                value={currentTask.name}
                 onChange={handleInputChange}
               />
             </div>
@@ -69,7 +68,7 @@ const Task = props => {
                 className="form-control"
                 id="project"
                 name="project"
-                value={currentTask.project}
+                value={currentTask.project_id}
                 onChange={handleInputChange}
               />
             </div>

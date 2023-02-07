@@ -88,7 +88,7 @@ export default function Task() {
                                     onClick={() => setActiveTask(task, index)}
                                     key={index}
                                 >
-                                    {task.title}
+                                    {task.name}
                                 </li>
                             ))
                         }
@@ -100,22 +100,22 @@ export default function Task() {
                             <h4>Task</h4>
                             <div>
                                 <label>
-                                    <strong>Title:</strong>
+                                    <strong>Name:</strong>
                                 </label>{" "}
-                                {currentTask}
+                                {currentTask.name}
                             </div>
                             <div>
                                 <label>
                                     <strong>Project:</strong>
                                 </label>{" "}
-                                {currentTask}
+                                {currentTask.project_id}
                             </div>
 
-                            <a href={"/app/tasks/" + currentTask.id}
+                            <button href={"/app/tasks/" + currentTask.id}
                                 className="badge badge-warning"
                             >
                                 Edit
-                            </a>
+                            </button>
                         </div>
                     ) : (
                         <div>
