@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo noupdate="1">
+
+    <record id="task_analisis" model="project.task">
+        <field name="name">Análisis</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_diagrama" model="project.task">
+        <field name="name">Diagrama E/R</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_casos" model="project.task">
+        <field name="name">Casos de uso</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_mockups" model="project.task">
+        <field name="name">Mockups</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_despliegue" model="project.task">
+        <field name="name">Despliegue</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_manual" model="project.task">
+        <field name="name">Manual de usuario</field>
+        <field name="user_id">2</field>
+        <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+</odoo>

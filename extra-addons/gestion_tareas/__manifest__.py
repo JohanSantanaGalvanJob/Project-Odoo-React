@@ -30,7 +30,8 @@
         'security/ir.model.access.csv',
         'reports/company_report.xml',
         'reports/company_report_view.xml',
-        'data/project_status_data.xml'
+        'data/project_status_data.xml',
+        'data/project_task.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
