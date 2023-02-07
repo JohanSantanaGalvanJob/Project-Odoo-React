@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import EmpreDataService from "../services/EmpresaService";
+import TaskService from "../../services/TaskService";
 
-const Bicycle = props => {
+const Task = props => {
   const { id }= useParams();
   let navigate = useNavigate();
 
-  const initialBicycleState = {
+  const initialTaskState = {
     id: null,
-    brand: "",
-    model: "",
+    title: "",
+    project: "",
+    stage: ""
   };
-  const [currentBicycle, setCurrentBicycle] = useState(initialBicycleState);
+  const [currentTask, setCurrentTask] = useState(initialTaskState);
   const [message, setMessage] = useState("");
 
-  const getBicycle = id => {
-    EmpreDataService.get(id)
+  const getTask = id => {
+    TaskService.get(id)
       .then(response => {
-        setCurrentBicycle(response.data.result.response);
+        setCurrentTask(response.data.result.response);
       })
       .catch(e => {
         console.log(e);
@@ -26,28 +27,18 @@ const Bicycle = props => {
 
   useEffect(() => {
     if (id)
-      getBicycle(id);
+      getTask(id);
   }, [id]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setCurrentBicycle({ ...currentBicycle, [name]: value });
+    setCurrentTask({ ...currentTask, [name]: value });
   };
 
-  const updateBicycle = () => {
-    EmpreDataService.update(currentBicycle.id, currentBicycle)
+  const updateTask = () => {
+    TaskService.update(currentTask.id, currentTask)
       .then(response => {
-        setMessage("The bicycle was updated successfully!");
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
-  const deleteBicycle = () => {
-    EmpreDataService.remove(currentBicycle.id)
-      .then(response => {
-        navigate("/app/bicycles");
+        setMessage("De puta madre");
       })
       .catch(e => {
         console.log(e);
@@ -56,43 +47,39 @@ const Bicycle = props => {
 
   return (
     <div>
-      {currentBicycle ? (
+      {currentTask ? (
         <div className="edit-form">
-          <h4>Bicycle</h4>
+          <h4>Task</h4>
           <form>
             <div className="form-group">
-              <label htmlFor="brand">Brand</label>
+              <label htmlFor="title">Título</label>
               <input
                 type="text"
                 className="form-control"
-                id="brand"
-                name="brand"
-                value={currentBicycle.brand}
+                id="title"
+                name="title"
+                value={currentTask.title}
                 onChange={handleInputChange}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="model">Model</label>
+              <label htmlFor="project">Proyecto</label>
               <input
                 type="text"
                 className="form-control"
-                id="model"
-                name="model"
-                value={currentBicycle.model}
+                id="project"
+                name="project"
+                value={currentTask.project}
                 onChange={handleInputChange}
               />
             </div>
 
           </form>
 
-          <button className="badge badge-danger mr-2" onClick={deleteBicycle}>
-            Delete
-          </button>
-
           <button
             type="submit"
             className="badge badge-success"
-            onClick={updateBicycle}
+            onClick={updateTask}
           >
             Update
           </button>
@@ -101,11 +88,11 @@ const Bicycle = props => {
       ) : (
         <div>
           <br />
-          <p>Please click on a Bicycle...</p>
+          <p>Y la tarea??</p>
         </div>
       )}
     </div>
   );
 };
 
-export default Bicycle;
+export default Task;
