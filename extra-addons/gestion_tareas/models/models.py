@@ -32,6 +32,7 @@ class hiring_projects(models.Model):
 class empresas_johan_tasks(models.Model):
     _name = 'project.task'
     _inherit = 'project.task'
+    
     kanban_state = fields.Selection([
         ('normal', 'In Progress'),
         ('done', 'Ready'),
@@ -43,16 +44,53 @@ class empresas_johan_tasks(models.Model):
 class ProjectStage(models.Model):
     _inherit = 'project.task.type'
     name = fields.Char(string="Name", required=True)
-    legend_unassigned = fields.Char(
-        'Grey Kanban Label', default=lambda s: ('Not Assigned'), translate=True, required=True,
-        help='Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.')
-    legend_delayed = fields.Char(
-        'Orange Kanban Label', default=lambda s: ('Delayed'), translate=True, required=True,
-        help='Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.')
 
 class Project(models.Model):
     _name = 'project.project'
     _inherit = 'project.project'
+
+    @api.model
+    def create(self, vals):
+        project = super(Project, self).create(vals)
+        task_vals = [{
+            'name': 'Análisis',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }, {
+            'name': 'Diagrama E/R',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }, {
+            'name': 'Casos de uso',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }, {
+            'name': 'Mockups',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }, {
+            'name': 'Despliegue',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }, {
+            'name': 'Manual de usuario',
+            'user_id': 2,
+            'create_uid': 2,
+            'write_uid': 2,
+            'project_id': project.id,
+        }]
+        self.env['project.task'].create(task_vals)
+        return project
     
 
     def _get_default_type_common(self):
