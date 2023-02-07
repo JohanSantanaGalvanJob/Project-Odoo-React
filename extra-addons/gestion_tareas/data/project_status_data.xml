@@ -2,16 +2,34 @@
 
 <odoo noupdate="1">
 
-    <record id="task_status_hecho" model="project.tags">
-        <field name="name">Hecho</field>
+    <record id="task_status_sin_iniciar" model="project.task.type">
+        <field name="name">Sin Iniciar</field>
+         <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
     </record>
 
-    <record id="task_status_incompleto" model="project.tags">
-        <field name="name">Incompleta</field>
+    <record id="task_status_en_progreso" model="project.task.type">
+        <field name="name">En Progreso</field>
+         <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
     </record>
 
-    <record id="task_status_proceso" model="project.tags">
-        <field name="name">En proceso</field>
+    <record id="task_status_bloqueado" model="project.task.type">
+        <field name="name">Bloqueado</field>
+         <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_status_terminado" model="project.task.type">
+        <field name="name">Terminado</field>
+         <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
+    </record>
+
+    <record id="task_status_revisado" model="project.task.type">
+        <field name="name">Revisado</field>
+         <field name="create_uid">2</field>
+        <field name="write_uid">2</field>
     </record>
 
 </odoo>

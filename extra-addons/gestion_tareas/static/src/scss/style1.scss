@@ -29,3 +29,17 @@
         background-color: #CCF2F4;
     }
 }
+
+.o_kanban_project_tasks .badge {
+    background: inherit;
+    color: inherit;
+    border: 1px solid var(--info);
+  }
+  
+  .o_kanban_project_tasks .badge-warning {
+    border-color: var(--primary);
+  }
+  
+  .o_kanban_project_tasks .badge-danger {
+    border-color: var(--secondary);
+  }
