@@ -8,7 +8,7 @@ import {
 
 // Pages & Components imports
 import Navbar from './components/Navbar/Navbar';
-import Task from './pages/Tasks/Task';
+import Tasks from './pages/Tasks/Tasks';
 import AddTask from './pages/Tasks/AddTask';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path='' element={<Navigate to={"/tasks"} />} />
-          <Route path='/tasks' element={<Task />} />
+          <Route path='/tasks' element={<Tasks />} />
           <Route path='/tasks/new' element={<AddTask/>}/>
         </Routes>
       </BrowserRouter>

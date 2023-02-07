@@ -48,30 +48,30 @@ const get = id => {
   return axios(config);
 };
 
-// const findByNif = nif => {
-//   const session_id = getSessionId();
+const findByProject = pro => {
+  const session_id = getSessionId();
 
-//   const data = JSON.stringify({
-//     "jsonrpc": "2.0",
-//     "params": {
-//       "data": {
-//         "nif": nif
-//       }
-//     }
-//   });
+  const data = JSON.stringify({
+    "jsonrpc": "2.0",
+    "params": {
+      "data": {
+        "project": pro
+      }
+    }
+  });
 
-//   const config = {
-//     method: 'POST',
-//     url: `/api/empresas/findByNif`,
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "X-Openerp-Session-Id": session_id,
-//     },
-//     data: data
-//   };
+  const config = {
+    method: 'POST',
+    url: `/api/empresas/findByProject`,
+    headers: {
+      'Content-Type': 'application/json',
+      "X-Openerp-Session-Id": session_id,
+    },
+    data: data
+  };
 
-//   return axios(config);
-// };
+  return axios(config);
+};
 
 const create = data => {
   const session_id = getSessionId();
