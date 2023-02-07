@@ -81,7 +81,7 @@ const create = data => {
     "params": {
       "data": {
         "name": data.name,
-        "project_id": data.project_id
+        "description": data.description
       }
     }
   });
@@ -107,7 +107,7 @@ const update = (id, data) => {
     "params": {
       "data": {
         "name": data.name,
-        "project_id": data.project_id
+        "description": data.description
       }
     }
   });

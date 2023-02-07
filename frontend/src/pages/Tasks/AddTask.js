@@ -7,9 +7,8 @@ export default function AddTask() {
 
     const initialTaskState = {
         id: null,
-        title: "",
-        project: "",
-        stage: ""
+        name: "",
+        project_id: ""
     }
     const [Task, setTask] = useState(initialTaskState);
     const [submitted, setSubmitted] = useState(false);
@@ -22,16 +21,14 @@ export default function AddTask() {
 
     const saveTask = () => {
         var data = {
-            title: Task.title,
-            project: Task.project,
-            stage: Task.stage
+            name: Task.name,
+            description: Task.description
         };
 
         TaskService.create(data).then(response => {
             setTask({
                 title: response.data.title,
-                project: response.data.project,
-                stage: response.data.stage
+                description: response.data.description
             });
             setSubmitted(true);
         }).catch(e => {
@@ -58,16 +55,15 @@ export default function AddTask() {
                 <form className="forms">
 
                     <div>
-                        <label htmlFor="title">Título</label>
-                        <input name="title" type="text" placeholder="Nombre de tarea" onChange={handleInputChange} required autoFocus />
+                        <label htmlFor="name">Título</label>
+                        <input name="name" type="text" placeholder="Nombre de tarea" onChange={handleInputChange} required autoFocus />
                     </div>
                     <div>
-                        <label htmlFor="project">Proyecto</label>
-                        <input name="project" type="text" placeholder="Nombre de proyecto" onChange={handleInputChange} required />
+                        <label htmlFor="description">Descripción</label>
+                        <input name="description" type="text" placeholder="descripción" onChange={handleInputChange} required />
                     </div>
                     <div>
-                        <label htmlFor="stage">Estado</label>
-                        <input name="stage" type="text" placeholder="Sin iniciar" onChange={handleInputChange} required />
+                        <button type="submit" onClick={saveTask}>Submit</button>
                     </div>
                 </form>
             )}
@@ -76,110 +72,3 @@ export default function AddTask() {
 
     );
 };
-
-// const AddCompany = () => {
-
-//   return (
-
-//         <div>
-//           <div className="form-group">
-//             <label htmlFor="name">Name</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="name"
-//               required
-//               value={Company.name}
-//               onChange={handleInputChange}
-//               name="name"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="description">Description</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="description"
-//               required
-//               value={Company.description}
-//               onChange={handleInputChange}
-//               name="description"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="email">Email</label>
-//             <input
-//               type="email"
-//               className="form-control"
-//               id="email"
-//               required
-//               value={Company.email}
-//               onChange={handleInputChange}
-//               name="email"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="phone">Phone</label>
-//             <input
-//               type="number"
-//               className="form-control"
-//               id="phone"
-//               required
-//               value={Company.phone}
-//               onChange={handleInputChange}
-//               name="phone"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="address">Address</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="address"
-//               required
-//               value={Company.address}
-//               onChange={handleInputChange}
-//               name="address"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="income">Income</label>
-//             <input
-//               type="number"
-//               className="form-control"
-//               id="income"
-//               required
-//               value={Company.income}
-//               onChange={handleInputChange}
-//               name="income"
-//             />
-//           </div>
-
-//           <div className="form-group">
-//             <label htmlFor="bill">Bill</label>
-//             <input
-//               type="number"
-//               className="form-control"
-//               id="bill"
-//               required
-//               value={Company.bill}
-//               onChange={handleInputChange}
-//               name="bill"
-//             />
-//           </div>
-
-//           <button onClick={saveCompany} className="btn btn-success">
-//             Submit
-//           </button>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default AddCompany;

@@ -12,7 +12,8 @@ class GestionTareas(http.Controller):
             vals = {
                 'id': rec.id,
                 'name': rec.name,
-                'project_id': rec.project_id,
+                'project_id': rec.project_id.name,
+                'description': rec.description,
             }
             gestion_tareas.append(vals)
             print ("GET ALL ----> ", gestion_tareas)
@@ -25,7 +26,8 @@ class GestionTareas(http.Controller):
         val = {
                 'id': rec.id,
                 'name': rec.name,
-                'project_id': rec.project_id,
+                'project_id': rec.project_id.name,
+                'description': rec.description,
         }
         data = {'status': 200, 'response': val, 'message': 'Success'}
         return data
@@ -40,7 +42,8 @@ class GestionTareas(http.Controller):
             vals = {
                 'id': rec.id,
                 'title': rec.title,
-                'project_id': rec.project_id,
+                'project_id': rec.project_id.name,
+                'description': rec.description,
             }
             gestion_tareas.append(vals)
         return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}

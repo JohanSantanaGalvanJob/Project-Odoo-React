@@ -106,9 +106,15 @@ export default function Task() {
                             </div>
                             <div>
                                 <label>
-                                    <strong>Project:</strong>
+                                    <strong>Proyecto:</strong>
                                 </label>{" "}
                                 {currentTask.project_id}
+                            </div>
+                            <div>
+                                <label>
+                                    <strong>Descripción:</strong>
+                                </label>{" "}
+                                {currentTask.description}
                             </div>
 
                             <button href={"/app/tasks/" + currentTask.id}
@@ -120,7 +126,7 @@ export default function Task() {
                     ) : (
                         <div>
                             <br />
-                            <p>Please click on a task</p>
+                            <p>Pulsa una tarea anda</p>
                         </div>
                     )}
                 </div>
