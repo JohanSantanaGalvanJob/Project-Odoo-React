@@ -2,7 +2,17 @@
 
 <odoo noupdate="1">
 
-    <record id="task_analisis" model="project.task">
+        <!-- <record model="project.task.type" id="task_type_new_state_1">
+            <field name="name">Nombre del nuevo estado 1</field>
+            <field name="state">new_state_1</field>
+        </record>
+
+        <record model="project.task.type" id="task_type_new_state_2">
+            <field name="name">Nombre del nuevo estado 2</field>
+            <field name="state">new_state_2</field>
+        </record> -->
+
+    <!-- <record id="task_analisis" model="project.task">
         <field name="name">Análisis</field>
         <field name="user_id">2</field>
         <field name="create_uid">2</field>
@@ -42,6 +52,6 @@
         <field name="user_id">2</field>
         <field name="create_uid">2</field>
         <field name="write_uid">2</field>
-    </record>
+    </record> -->
 
 </odoo>
