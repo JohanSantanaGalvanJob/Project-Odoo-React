@@ -51,10 +51,13 @@ class ProjectStage(models.Model):
         help='Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.')
 
 class Project(models.Model):
+    _name = 'project.project'
     _inherit = 'project.project'
     
-    stage_id = fields.Many2one(
-        'project.task.type',
-        # string='Stage',
-        # default=lambda self: self.env.ref('gestion_tareas.task_status_sin_iniciar'),
-    )
+
+    def _get_default_type_common(self):
+        ids = self.env["project.task.type"].search([("active", "=", True)])
+        return ids
+    
+    type_ids = fields.Many2many(default=lambda self: self._get_default_type_common())
+   
