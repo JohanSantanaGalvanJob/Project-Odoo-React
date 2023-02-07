@@ -6,7 +6,6 @@ export default function Task() {
     const [tasks, setTasks] = useState([]);
     const [currentTask, setCurrentTask] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
-    const [searchNif, setSearchNif] = useState("");
 
     useEffect(() => {
         retrieveTasks();
