@@ -114,7 +114,7 @@ export default function Task() {
                                 <label>
                                     <strong>Descripción:</strong>
                                 </label>{" "}
-                                {currentTask.description}
+                                {currentTask.description.split('>')[1].split('<')[0]}
                             </div>
 
                             <button href={"/app/tasks/" + currentTask.id}
