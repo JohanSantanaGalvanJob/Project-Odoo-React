@@ -117,6 +117,13 @@ export default function Task() {
                                 {currentTask.description.split('>')[1].split('<')[0]}
                             </div>
 
+                            <div>
+                                <label>
+                                    <strong>Estado de la Tarea:</strong>
+                                </label>{" "}
+                                {currentTask.kanban_state}
+                            </div>
+
                             <button href={"/app/tasks/" + currentTask.id}
                                 className="badge badge-warning"
                             >
