@@ -114,7 +114,7 @@ export default function Task() {
                                 <label>
                                     <strong>Descripción:</strong>
                                 </label>{" "}
-                                {currentTask.description.split('>')[1].split('<')[0]}
+                                {currentTask.description ? currentTask.description.split('>')[1].split('<')[0]: "Indeed, you have fallen right into my trap!!"}
                             </div>
 
                             <div>
