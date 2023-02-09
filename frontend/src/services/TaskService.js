@@ -26,6 +26,28 @@ const getAll = () => {
   return axios(config);
 };
 
+const getAllProjectStage = () => {
+  const session_id = getSessionId();
+
+  const data = JSON.stringify({
+    "jsonrpc": "2.0",
+    "params": {
+    }
+  });
+
+  const config = {
+    method: 'POST',
+    url: '/api/projectStage/getAll',
+    headers: {
+      'Content-Type': 'application/json',
+      "X-Openerp-Session-Id": session_id,
+    },
+    data: data
+  };
+
+  return axios(config);
+};
+
 const get = id => {
   const session_id = getSessionId();
 
@@ -48,21 +70,21 @@ const get = id => {
   return axios(config);
 };
 
-const findByProject = pro => {
+const findByProject = name => {
   const session_id = getSessionId();
 
   const data = JSON.stringify({
     "jsonrpc": "2.0",
     "params": {
       "data": {
-        "project_id": pro
+        "name": name
       }
     }
   });
 
   const config = {
     method: 'POST',
-    url: `/api/empresas/findByProject`,
+    url: `/api/tasks/findByProject`,
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -81,7 +103,9 @@ const create = data => {
     "params": {
       "data": {
         "name": data.name,
-        "description": data.description
+        // "project_id": data.project_id,
+        "description": data.description,
+        // "kanban_state": data.kanban_state,
       }
     }
   });
@@ -177,7 +201,8 @@ const TaskService = {
   update,
   removeAll,
   findByProject,
-  initSession
+  initSession,
+  getAllProjectStage
 };
 
 export default TaskService;

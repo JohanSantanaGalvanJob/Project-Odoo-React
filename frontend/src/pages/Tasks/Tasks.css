@@ -1,0 +1,22 @@
+.list {
+    margin: 1em;
+}
+
+.btn-primary {
+    margin-left: .5em;
+    background-color: #2EA2DB !important;
+    border-color: #2EA2DB !important;
+}
+
+.btn-warning {
+    margin-top: .5em;
+}
+
+h4 {
+    margin-bottom: 1em;
+}
+
+.active {
+    background-color: #2EA2DB !important;
+    border-color: #2EA2DB !important;
+}

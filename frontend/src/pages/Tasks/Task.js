@@ -3,13 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import TaskService from "../../services/TaskService";
 
 const Task = props => {
-  const { id }= useParams();
+  const { id } = useParams();
   let navigate = useNavigate();
 
   const initialTaskState = {
     id: null,
     name: "",
-    project_id: ""
+    description: ""
   };
   const [currentTask, setCurrentTask] = useState(initialTaskState);
   const [message, setMessage] = useState("");
@@ -17,7 +17,11 @@ const Task = props => {
   const getTask = id => {
     TaskService.get(id)
       .then(response => {
-        setCurrentTask(response.data.result.response);
+        setCurrentTask({
+          id: response.data.result.response.id,
+          name: response.data.result.response.name,
+          description: (response.data.result.response.description ? response.data.result.response.description.split('>')[1].split('<')[0] : "")
+        });
       })
       .catch(e => {
         console.log(e);
@@ -48,41 +52,41 @@ const Task = props => {
     <div>
       {currentTask ? (
         <div className="edit-form">
-          <h4>Task</h4>
-          <form>
+          <h4 className="text-center">Task</h4>
+          <form className="forms">
             <div className="form-group">
-              <label htmlFor="title">Título</label>
+              <label htmlFor="name">Título</label>
               <input
                 type="text"
                 className="form-control"
-                id="title"
-                name="title"
+                id="name"
+                name="name"
                 value={currentTask.name}
                 onChange={handleInputChange}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="project">Proyecto</label>
-              <input
-                type="text"
+              <label htmlFor="description">Descripción</label>
+              <textarea
                 className="form-control"
-                id="project"
-                name="project"
-                value={currentTask.project_id}
+                id="description"
+                name="description"
+                value={currentTask.description}
                 onChange={handleInputChange}
               />
             </div>
 
+            <div>
+              <button
+                type="submit"
+                className="btn btn-warning"
+                onClick={updateTask}
+              >
+                Update
+              </button>
+            </div>
           </form>
 
-          <button
-            type="submit"
-            className="badge badge-success"
-            onClick={updateTask}
-          >
-            Update
-          </button>
-          <p>{message}</p>
         </div>
       ) : (
         <div>

@@ -43,7 +43,14 @@ class empresas_johan_tasks(models.Model):
 
 class ProjectStage(models.Model):
     _inherit = 'project.task.type'
-    name = fields.Char(string="Name", required=True)
+    _name = 'project.task.type'
+
+    legend_unassigned = fields.Char(
+        'Kanban Label', default=lambda s:('Not Assigned'), translate=True, required=True,
+        help='Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.')
+    legend_delayed = fields.Char(
+        'Kanban Label', default=lambda s:('Delayed'), translate=True, required=True,
+        help='Override the default value displayed for the blocked state for kanban selection, when the task or issue is in that stage.')
 
 class Project(models.Model):
     _name = 'project.project'

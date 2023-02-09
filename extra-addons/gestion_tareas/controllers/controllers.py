@@ -4,6 +4,21 @@ from odoo.http import request
 
 
 class GestionTareas(http.Controller):
+
+
+    @http.route('/api/projectStage/getAll', auth='public',type="json",csrf=True, cors='*')
+    def listProject(self, **kw):
+        gestion_tareas_rec = request.env['project.task.type'].sudo().search([])
+        gestion_tareas = []
+        for rec in gestion_tareas_rec:
+            vals = {
+                'id': rec.id,
+                'name': rec.name,
+            }
+            gestion_tareas.append(vals)
+            print ("GET ALL ----> ", gestion_tareas)
+        return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
+
     @http.route('/api/tasks/getAll', auth='public',type="json",csrf=True, cors='*')
     def list(self, **kw):
         gestion_tareas_rec = request.env['project.task'].sudo().search([])
@@ -14,6 +29,9 @@ class GestionTareas(http.Controller):
                 'name': rec.name,
                 'project_id': rec.project_id.name,
                 'description': rec.description,
+                'kanban_state': rec.kanban_state_label,
+                'stage':rec.stage_id.name,
+                'user': rec.user_id.name,
             }
             gestion_tareas.append(vals)
             print ("GET ALL ----> ", gestion_tareas)
@@ -28,6 +46,9 @@ class GestionTareas(http.Controller):
                 'name': rec.name,
                 'project_id': rec.project_id.name,
                 'description': rec.description,
+                'kanban_state': rec.kanban_state_label,
+                'stage': rec.stage_id.name,
+                'user': rec.user_id.name,
         }
         data = {'status': 200, 'response': val, 'message': 'Success'}
         return data
@@ -41,9 +62,12 @@ class GestionTareas(http.Controller):
         for rec in gestion_tareas_rec:
             vals = {
                 'id': rec.id,
-                'title': rec.title,
+                'name': rec.name,
                 'project_id': rec.project_id.name,
                 'description': rec.description,
+                'kanban_state': rec.kanban_state_label,
+                'stage': rec.stage_id.name,
+                'user': rec.user_id.name,
             }
             gestion_tareas.append(vals)
         return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
