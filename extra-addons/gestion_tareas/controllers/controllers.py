@@ -14,7 +14,6 @@ class GestionTareas(http.Controller):
                 'name': rec.name,
                 'project_id': rec.project_id.name,
                 'description': rec.description,
-                'kanban_state': rec.kanban_state_label
             }
             gestion_tareas.append(vals)
             print ("GET ALL ----> ", gestion_tareas)
