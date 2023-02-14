@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <>
             <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <a href="/tareas" className="navbar-brand">
+                <a href="/tasks" className="navbar-brand">
                     <div className="main-logo" >
                         <img src="/app/icon.png" alt="Tareas" />
                     </div>
