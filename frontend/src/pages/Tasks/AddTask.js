@@ -9,7 +9,7 @@ export default function AddTask() {
         id: null,
         name: "",
         kanban_state: "",
-        stage: "",
+        stage: null,
         // user:""
     }
 
@@ -40,7 +40,7 @@ export default function AddTask() {
             name: Task.name,
             description: Task.description,
             kanban_state: Task.kanban_state,
-            stage: Task.name,
+            stage: Task.stage,
             // user: Task.user
 
         };
