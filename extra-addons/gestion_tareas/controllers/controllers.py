@@ -30,7 +30,7 @@ class GestionTareas(http.Controller):
                 'project_id': rec.project_id.name,
                 'description': rec.description,
                 'kanban_state': rec.kanban_state_label,
-                'stage':rec.stage_id.name,
+                'stage':rec.stage_id,
                 'user': rec.user_id.name,
             }
             gestion_tareas.append(vals)

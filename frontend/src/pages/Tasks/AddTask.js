@@ -89,7 +89,7 @@ export default function AddTask() {
                         <select className="form-control" name="stage" type="text" placeholder="descripción" onChange={handleInputChange} required>
                         {projectStage &&
                             projectStage.map((projectStage, index) => (
-                                <option value="Sos">{projectStage.name}</option>
+                                <option value="Sos">{projectStage.id}</option>
                             ))
                         }
                             
