@@ -48,6 +48,28 @@ const getAllProjectStage = () => {
   return axios(config);
 };
 
+const getAllProject = () => {
+  const session_id = getSessionId();
+
+  const data = JSON.stringify({
+    "jsonrpc": "2.0",
+    "params": {
+    }
+  });
+
+  const config = {
+    method: 'POST',
+    url: '/api/projectStage/getAll',
+    headers: {
+      'Content-Type': 'application/json',
+      "X-Openerp-Session-Id": session_id,
+    },
+    data: data
+  };
+
+  return axios(config);
+};
+
 const get = id => {
   const session_id = getSessionId();
 

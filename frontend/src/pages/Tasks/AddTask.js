@@ -9,7 +9,7 @@ export default function AddTask() {
         id: null,
         name: "",
         kanban_state: "",
-        stage: null,
+        stage: "",
         // user:""
     }
 
@@ -40,7 +40,7 @@ export default function AddTask() {
             name: Task.name,
             description: Task.description,
             kanban_state: Task.kanban_state,
-            stage: Task.stage,
+            stage: Task.name,
             // user: Task.user
 
         };
@@ -89,7 +89,7 @@ export default function AddTask() {
                         <select className="form-control" name="stage" type="text" placeholder="descripción" onChange={handleInputChange} required>
                         {projectStage &&
                             projectStage.map((projectStage, index) => (
-                                <option value="Sos">{projectStage.id}</option>
+                                <option value="Sos">{projectStage.name}</option>
                             ))
                         }
                             

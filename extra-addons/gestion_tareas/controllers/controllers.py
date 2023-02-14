@@ -5,6 +5,19 @@ from odoo.http import request
 
 class GestionTareas(http.Controller):
 
+    @http.route('/api/project/getAll', auth='public',type="json",csrf=True, cors='*')
+    def listProject(self, **kw):
+        gestion_tareas_rec = request.env['project.project'].sudo().search([])
+        gestion_tareas = []
+        for rec in gestion_tareas_rec:
+            vals = {
+                'id': rec.id,
+                'name': rec.name,
+            }
+            gestion_tareas.append(vals)
+            print ("GET ALL ----> ", gestion_tareas)
+        return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
+
 
     @http.route('/api/projectStage/getAll', auth='public',type="json",csrf=True, cors='*')
     def listProject(self, **kw):
