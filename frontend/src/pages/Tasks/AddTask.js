@@ -45,17 +45,20 @@ export default function AddTask() {
 
         };
 
-        TaskService.create(data).then(response => {
-            setTask({
-                title: response.data.title,
-                description: response.data.description,
-                kanban_state: response.data.kanban_state,
-                stage: response.data.stage
+        if(data.name) {
+            TaskService.create(data).then(response => {
+                setTask({
+                    title: response.data.title,
+                    description: response.data.description,
+                    kanban_state: response.data.kanban_state,
+                    stage: response.data.stage
+                });
+                setSubmitted(true);
+            }).catch(e => {
+                console.log(e);
             });
-            setSubmitted(true);
-        }).catch(e => {
-            console.log(e);
-        });
+        }
+        
     };
 
     const newTask = () => {
