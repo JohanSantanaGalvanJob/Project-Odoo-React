@@ -8,15 +8,18 @@ export default function AddTask() {
     const initialTaskState = {
         id: null,
         name: "",
-        kanban_state: "",
-        stage: "",
-        // user:""
+        // kanban_state: "",
+        stage_id: null,
+        project_id: null,
+        user_id: 2,
     }
 
     useEffect(() => {
         retrieveTasks();
+        retrieveProjects();
     }, []);
 
+    const [project, setProject] = useState([]);
     const [projectStage,setProjectStage] = useState([]);
     const [Task, setTask] = useState(initialTaskState);
     const [submitted, setSubmitted] = useState(false);
@@ -34,25 +37,36 @@ export default function AddTask() {
         })
     };
 
+    const retrieveProjects = () => {
+        TaskService.getAllProject().then(response => {
+            setProject(response.data.result.response);
+        }).catch(e => {
+            console.log(e);
+        })
+    };
+
 
     const saveTask = () => {
         var data = {
             name: Task.name,
             description: Task.description,
-            kanban_state: Task.kanban_state,
-            stage: Task.name,
-            // user: Task.user
+            // kanban_state: Task.kanban_state,
+            stage_id: Task.stage_id,
+            project: Task.project_id
 
         };
 
         if(data.name) {
             TaskService.create(data).then(response => {
                 setTask({
-                    title: response.data.title,
+                    name: response.data.name,
                     description: response.data.description,
-                    kanban_state: response.data.kanban_state,
-                    stage: response.data.stage
+                    // kanban_state: response.data.kanban_state,
+                    stage_id: response.data.stage_id,
+                    project_id: response.data.project,
+                    user_id: 2
                 });
+                console.log(response.data.project)
                 setSubmitted(true);
             }).catch(e => {
                 console.log(e);
@@ -87,12 +101,13 @@ export default function AddTask() {
                         <h4><small>Descripción</small></h4>
                         <textarea className="form-control" name="description" type="text" placeholder="Descripción de la tarea" onChange={handleInputChange} required />
                     </div>
+
                     <div>
-                        <h4><small>Estado del proyecto</small></h4>
-                        <select className="form-control" name="stage" type="text" placeholder="descripción" onChange={handleInputChange} required>
-                        {projectStage &&
-                            projectStage.map((projectStage, index) => (
-                                <option value="Sos">{projectStage.name}</option>
+                        <h4><small>Proyecto</small></h4>
+                        <select className="form-control" name="project" type="text" onChange={handleInputChange} required>
+                        {project &&
+                            project.map((project, index) => (
+                                <option value="Sos">{project.id}</option>
                             ))
                         }
                             
@@ -101,6 +116,19 @@ export default function AddTask() {
 
                     </div>
                     <div>
+                        <h4><small>Estado del proyecto</small></h4>
+                        <select className="form-control" name="stage_id" type="text" placeholder="descripción" onChange={handleInputChange} required>
+                        {projectStage &&
+                            projectStage.map((projectStage, index) => (
+                                <option value="Sos">{projectStage.id}</option>
+                            ))
+                        }
+                            
+
+                        </select>
+
+                    </div>
+                    {/* <div>
                         <h4><small>Estado de la tarea</small></h4>
                         <select className="form-control" name="kanban_state_label" type="text" onChange={handleInputChange} required>
 
@@ -110,7 +138,7 @@ export default function AddTask() {
                             <option value="Not Assigned" selected>Not Assigned</option>
                             <option value="Delayed">Delayed</option>
                         </select>
-                    </div>
+                    </div> */}
                     <div>
                         <button className="btn btn-success" type="submit" onClick={saveTask}>Submit</button>
                     </div>

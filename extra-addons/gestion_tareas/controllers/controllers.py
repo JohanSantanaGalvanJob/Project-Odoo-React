@@ -20,7 +20,7 @@ class GestionTareas(http.Controller):
 
 
     @http.route('/api/projectStage/getAll', auth='public',type="json",csrf=True, cors='*')
-    def listProject(self, **kw):
+    def listProjectStage(self, **kw):
         gestion_tareas_rec = request.env['project.task.type'].sudo().search([])
         gestion_tareas = []
         for rec in gestion_tareas_rec:

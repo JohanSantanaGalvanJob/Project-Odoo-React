@@ -59,7 +59,7 @@ const getAllProject = () => {
 
   const config = {
     method: 'POST',
-    url: '/api/projectStage/getAll',
+    url: '/api/project/getAll',
     headers: {
       'Content-Type': 'application/json',
       "X-Openerp-Session-Id": session_id,
@@ -128,6 +128,7 @@ const create = data => {
         // "project_id": data.project_id,
         "description": data.description,
         // "kanban_state": data.kanban_state,
+        // "stage_id": data.stage_id
       }
     }
   });
@@ -224,7 +225,8 @@ const TaskService = {
   removeAll,
   findByProject,
   initSession,
-  getAllProjectStage
+  getAllProjectStage,
+  getAllProject
 };
 
 export default TaskService;
