@@ -56,7 +56,7 @@ export default function AddTask() {
 
         };
 
-        if(data.name) {
+        if(data.name && data.description) {
             TaskService.create(data).then(response => {
                 setTask({
                     name: response.data.name,
