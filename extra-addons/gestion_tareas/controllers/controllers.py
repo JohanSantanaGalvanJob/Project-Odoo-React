@@ -17,6 +17,33 @@ class GestionTareas(http.Controller):
             gestion_tareas.append(vals)
             print ("GET ALL ----> ", gestion_tareas)
         return {'status': 200, 'response': gestion_tareas, 'message': 'Success'}
+    
+    @http.route('/api/tasks/getAllProjects/<int:rec_id>', type='json', auth='public', csrf=True, cors='*')
+    def listOneProject(self, rec_id):
+        model_to_get = request.env['project.project']
+        tasks_rec = model_to_get.browse(rec_id).sudo().ensure_one()
+        tasks = []
+        for rec in tasks_rec:
+            val = {
+                'name': rec.name,
+                'tasks_count': rec.task_count,
+                'description': rec.description
+            }
+            tasks.append(val)
+        data = {'status': 200, 'response': tasks, 'message': 'Success'}
+        return data
+    
+    @http.route('/api/tasks/getAllUsers', type="json", auth="public", csrf=True, cors='*')
+    def listUsers(self):
+        tasks_rec = request.env['res.users'].sudo().search([])
+        tasks = []
+        for rec in tasks_rec:
+            vals = {
+                'id': rec.id,
+                'email': rec.login,
+            }
+            tasks.append(vals)
+        return {'status': 200, 'response': tasks, 'message': 'Success'}
 
 
     @http.route('/api/projectStage/getAll', auth='public',type="json",csrf=True, cors='*')
@@ -40,10 +67,14 @@ class GestionTareas(http.Controller):
             vals = {
                 'id': rec.id,
                 'name': rec.name,
-                'project_id': rec.project_id.name,
+                'project_id': rec.project_id,
+                'project': rec.project_id.name,
                 'description': rec.description,
-                'kanban_state': rec.kanban_state_label,
-                'stage':rec.stage_id.id,
+                'kanban_state_label': rec.kanban_state_label,
+                'kanban_state': rec.kanban_state,
+                'stage_id':rec.stage_id,
+                'stage': rec.stage_id.name,
+                'user_id':rec.user_id,
                 'user': rec.user_id.name,
             }
             gestion_tareas.append(vals)
@@ -57,10 +88,14 @@ class GestionTareas(http.Controller):
         val = {
                 'id': rec.id,
                 'name': rec.name,
-                'project_id': rec.project_id.name,
+                'project_id': rec.project_id,
+                'project': rec.project_id.name,
                 'description': rec.description,
-                'kanban_state': rec.kanban_state_label,
+                'kanban_state_label': rec.kanban_state_label,
+                'kanban_state': rec.kanban_state,
+                'stage_id':rec.stage_id,
                 'stage': rec.stage_id.name,
+                'user_id':rec.user_id,
                 'user': rec.user_id.name,
         }
         data = {'status': 200, 'response': val, 'message': 'Success'}
@@ -76,10 +111,14 @@ class GestionTareas(http.Controller):
             vals = {
                 'id': rec.id,
                 'name': rec.name,
-                'project_id': rec.project_id.name,
+                'project_id': rec.project_id,
+                'project': rec.project_id.name,
                 'description': rec.description,
-                'kanban_state': rec.kanban_state_label,
+                'kanban_state_label': rec.kanban_state_label,
+                'kanban_state': rec.kanban_state,
+                'stage_id':rec.stage_id,
                 'stage': rec.stage_id.name,
+                'user_id':rec.user_id,
                 'user': rec.user_id.name,
             }
             gestion_tareas.append(vals)

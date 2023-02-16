@@ -46,7 +46,6 @@ export default function Task() {
 
         TaskService.findByProject(searchProject)
             .then(response => {
-                console.log(response)
                 setTasks(response.data.result.response);
             })
             .catch(e => {
@@ -110,7 +109,7 @@ export default function Task() {
                                 <label>
                                     <strong>Proyecto:</strong>
                                 </label>{" "}
-                                {currentTask.project_id}
+                                {currentTask.project}
                             </div>
                             <div>
                                 <label>
@@ -123,7 +122,7 @@ export default function Task() {
                                 <label>
                                     <strong>Estado de la tarea:</strong>
                                 </label>{" "}
-                                {currentTask.kanban_state}
+                                {currentTask.kanban_state_label}
                             </div>
 
                             <div>

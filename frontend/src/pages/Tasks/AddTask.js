@@ -8,77 +8,81 @@ export default function AddTask() {
     const initialTaskState = {
         id: null,
         name: "",
-        // kanban_state: "",
-        stage_id: null,
-        project_id: null,
-        user_id: 2,
+        user_id: "",
+        project_id: "",
+        stage_id: "",
+        kanban_state: "",
+        description: ""
     }
 
-    useEffect(() => {
-        retrieveTasks();
-        retrieveProjects();
-    }, []);
-
     const [project, setProject] = useState([]);
-    const [projectStage,setProjectStage] = useState([]);
-    const [Task, setTask] = useState(initialTaskState);
+    const [task, setTask] = useState(initialTaskState);
     const [submitted, setSubmitted] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [stages, setStages] = useState([]);
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        setTask({ ...Task, [name]: value });
+        setTask({ ...task, [name]: value });
     };
 
-    const retrieveTasks = () => {
-        TaskService.getAllProjectStage().then(response => {
-            setProjectStage(response.data.result.response);
-        }).catch(e => {
-            console.log(e);
+    const getUsers = () => {
+        TaskService.getAllUsers().then(response => {
+            setUsers(response.data.result.response)
         })
-    };
+    }
 
-    const retrieveProjects = () => {
+    const getProjects = () => {
         TaskService.getAllProject().then(response => {
-            setProject(response.data.result.response);
-        }).catch(e => {
-            console.log(e);
+            setProject(response.data.result.response)
         })
-    };
+    }
 
+    const getStages = () => {
+        TaskService.getAllProjectStage().then(response => {
+            setStages(response.data.result.response)
+        })
+    }
 
     const saveTask = () => {
         var data = {
-            name: Task.name,
-            description: Task.description,
-            // kanban_state: Task.kanban_state,
-            stage_id: Task.stage_id,
-            project: Task.project_id
-
+            name: task.name,
+            user_id: task.user_id,
+            project_id: task.project_id,
+            stage_id: task.stage_id,
+            kanban_state: task.kanban_state,
+            description: task.description
         };
-
-        if(data.name && data.description) {
-            TaskService.create(data).then(response => {
+        console.log(data);
+        TaskService.create(data)
+            .then(response => {
                 setTask({
                     name: response.data.name,
                     description: response.data.description,
-                    // kanban_state: response.data.kanban_state,
+                    user_id: response.data.user_id,
+                    project_id: response.data.project_id,
                     stage_id: response.data.stage_id,
-                    project_id: response.data.project,
-                    user_id: 2
+                    kanban_state: response.data.kanban_state,
+                    
                 });
-                console.log(response.data.project)
                 setSubmitted(true);
-            }).catch(e => {
+                // console.log(response.data)
+            })
+            .catch(e => {
                 console.log(e);
             });
-        }
-        
     };
 
     const newTask = () => {
         setTask(initialTaskState);
         setSubmitted(false);
     };
+
+    useEffect(() => {
+        getProjects();
+        getUsers();
+        getStages();
+    }, []);
 
 
     return (
@@ -94,23 +98,39 @@ export default function AddTask() {
                 <form className="forms">
 
                     <div>
-                        <h4><small> Título</small></h4>
-                        <input className="form-control" name="name" type="text" placeholder="Nombre de tarea" onChange={handleInputChange} required autoFocus />
+                        <h4><small>Título</small></h4>
+                        <input className="form-control" name="name" type="text" placeholder="Nombre de tarea" onChange={handleInputChange} required value={task.name} />
                     </div>
                     <div>
                         <h4><small>Descripción</small></h4>
-                        <textarea className="form-control" name="description" type="text" placeholder="Descripción de la tarea" onChange={handleInputChange} required />
+                        <textarea value={task.description} className="form-control" name="description" type="text" placeholder="Descripción de la tarea" onChange={handleInputChange} required />
+                    </div>
+
+                    <div>
+                        <h4><small>Usuarios</small></h4>
+                        <select className="form-control" name="user_id" type="text" onChange={handleInputChange} required>
+                           <option value="2" selected>...</option> 
+                            {users &&
+                                users.map((user, index) => (
+                                    <option value={user.id} key={index}>{user.email}</option>
+                                ))
+                            }
+
+
+                        </select>
+
                     </div>
 
                     <div>
                         <h4><small>Proyecto</small></h4>
-                        <select className="form-control" name="project" type="text" onChange={handleInputChange} required>
-                        {project &&
-                            project.map((project, index) => (
-                                <option value="Sos">{project.id}</option>
-                            ))
-                        }
-                            
+                        <select className="form-control" name="project_id" type="text" onChange={handleInputChange} required>
+                        <option value="3" selected>...</option> 
+                            {project &&
+                                project.map((project, index) => (
+                                    <option value={project.id} key={index}>{project.name}</option>
+                                ))
+                            }
+
 
                         </select>
 
@@ -118,29 +138,30 @@ export default function AddTask() {
                     <div>
                         <h4><small>Estado del proyecto</small></h4>
                         <select className="form-control" name="stage_id" type="text" placeholder="descripción" onChange={handleInputChange} required>
-                        {projectStage &&
-                            projectStage.map((projectStage, index) => (
-                                <option value="Sos">{projectStage.id}</option>
-                            ))
-                        }
-                            
+                        <option value="11" selected>...</option>
+                            {stages &&
+                                stages.map((stages, index) => (
+                                    <option value={stages.id} key={index}>{stages.name}</option>
+                                ))
+                            }
+
 
                         </select>
 
                     </div>
-                    {/* <div>
-                        <h4><small>Estado de la tarea</small></h4>
-                        <select className="form-control" name="kanban_state_label" type="text" onChange={handleInputChange} required>
-
-                            <option value="In Progress">In Progress</option>
-                            <option value="Ready">Ready</option>
-                            <option value="Blocked">Blocked</option>
-                            <option value="Not Assigned" selected>Not Assigned</option>
-                            <option value="Delayed">Delayed</option>
-                        </select>
-                    </div> */}
                     <div>
-                        <button className="btn btn-success" type="submit" onClick={saveTask}>Submit</button>
+                        <h4><small>Estado de la tarea</small></h4>
+                        <select className="form-control" name="kanban_state" type="text" onChange={handleInputChange} required>
+                            <option value="normal" selected>...</option>
+                            <option value="unassigned">Unassigned</option>
+                            <option value="normal">In Progress</option>
+                            <option value="done">Ready</option>
+                            <option value="delayed">Delayed</option>
+                            <option value="blocked" >Blocked</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button className="btn btn-success" onClick={saveTask}>Submit</button>
                     </div>
                 </form>
             )}
