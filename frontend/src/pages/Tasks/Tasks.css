@@ -12,6 +12,11 @@
     margin-top: .5em;
 }
 
+.btn-danger {
+    margin-top: .5em;
+    margin-left: 1em;
+}
+
 h4 {
     margin-bottom: 1em;
 }

@@ -141,28 +141,28 @@ class GestionTareas(http.Controller):
         data = {'status': 200, 'response': record, 'message': 'Success'}
         return data
 
-    # @http.route('/api/tasks/remove/<int:rec_id>', type='json', auth='public', csrf=True, cors='*')
-    # def delete(self, rec_id):
-    #     task_to_del_rec = request.env["project.task"]
-    #     rec = task_to_del_rec.browse(rec_id).sudo().ensure_one()
-    #     is_deleted = rec.unlink()
-    #     res = {
-    #         "result": is_deleted
-    #     }
-    #     data = {'status': 200, 'response': res, 'message': 'Success'}
-    #     return data
+    @http.route('/api/tasks/remove/<int:rec_id>', type='json', auth='public', csrf=True, cors='*')
+    def delete(self, rec_id):
+        task_to_del_rec = request.env["project.task"]
+        rec = task_to_del_rec.browse(rec_id).sudo().ensure_one()
+        is_deleted = rec.unlink()
+        res = {
+            "result": is_deleted
+        }
+        data = {'status': 200, 'response': res, 'message': 'Success'}
+        return data
 
-    # @http.route('/api/tasks/removeAll', type='json', auth='public', csrf=True, cors='*')
-    # def deleteAll(self):
-    #     task_to_del = request.env["project.task"].sudo()
+    @http.route('/api/tasks/removeAll', type='json', auth='public', csrf=True, cors='*')
+    def deleteAll(self):
+        task_to_del = request.env["project.task"].sudo()
         
-    #     # .with_context(active_test=False) to also find inactive records.
-    #     all_tasks = task_to_del.with_context(active_test=False).search([])
-    #     is_deleted = all_tasks.unlink()
-    #     res = {
-    #         "result": is_deleted
-    #     }
-    #     data = {'status': 200, 'response': res, 'message': 'Success'}
-    #     return data
+        # .with_context(active_test=False) to also find inactive records.
+        all_tasks = task_to_del.with_context(active_test=False).search([])
+        is_deleted = all_tasks.unlink()
+        res = {
+            "result": is_deleted
+        }
+        data = {'status': 200, 'response': res, 'message': 'Success'}
+        return data
     
 

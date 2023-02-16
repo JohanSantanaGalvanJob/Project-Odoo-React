@@ -221,6 +221,28 @@ const update = (id, data) => {
   return axios(config);
 };
 
+const remove = id => {
+  const session_id = getSessionId();
+
+  const data = JSON.stringify({
+    "jsonrpc": "2.0",
+    "params": {
+    }
+  });
+
+  const config = {
+    method: 'POST',
+    url: `/api/tasks/remove/${id}`,
+    headers: {
+      'Content-Type': 'application/json',
+      "X-Openerp-Session-Id": session_id,
+    },
+    data: data
+  };
+  
+  return axios(config);
+};
+
 const removeAll = () => {
   const session_id = getSessionId();
 
@@ -271,6 +293,7 @@ const TaskService = {
   get,
   create,
   update,
+  remove,
   removeAll,
   findByProject,
   initSession,

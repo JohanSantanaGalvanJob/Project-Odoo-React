@@ -53,6 +53,11 @@ export default function Task() {
             });
     };
 
+    const deleteTask = () => {
+        TaskService.remove(currentTask.id);
+        window.location.reload();
+    };
+
     return (
         <>
             <div className="list row">
@@ -71,7 +76,7 @@ export default function Task() {
                                 type="button"
                                 onClick={findByProject}
                             >
-                                Search
+                                Buscar
                             </button>
                         </div>
                     </div>
@@ -101,7 +106,7 @@ export default function Task() {
                             <h4 className="text-center">Task</h4>
                             <div>
                                 <label>
-                                    <strong>Name:</strong>
+                                    <strong>Nombre:</strong>
                                 </label>{" "}
                                 {currentTask.name}
                             </div>
@@ -142,7 +147,13 @@ export default function Task() {
                             <a href={"/tasks/" + currentTask.id}
                                 className="btn btn-warning"
                             >
-                                Edit
+                                Editar
+                            </a>
+
+                            <a onClick={deleteTask}
+                                className="btn btn-danger"
+                            >
+                                Borrar
                             </a>
                         </div>
                     ) : (
